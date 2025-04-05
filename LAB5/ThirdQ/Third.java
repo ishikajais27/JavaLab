@@ -1,3 +1,5 @@
+// -Define an interface with three methods – earnings(), deductions() and bonus()
+// and define a Java class ‘Manager’ which uses this interface without implementing bonus() method.
 // Also define another Java class ‘Substaff’ which extends from ‘Manager’ class and implements
 // bonus() method. Write the complete program to find out earnings, deduction and bonus of a
 // substaff with basic salary amount entered by the user as per the following guidelines –
@@ -10,49 +12,49 @@
 // Bonus - 25000
 import java.util.Scanner;
 
-interface Main {
-    public void earnings(int basic);
-    public void deductions(int basic);
-    public void bonus(int basic);
-}
+interface  Main{
 
+    public void earnings();
+    public void deduction();
+    public void bonus(); 
+}
 class Manager implements Main {
-    double earn;
-    double deduct;
+    int basic;
 
-    public void earnings(int basic) {
-        earn = basic + (0.8 * basic) + (0.15 * basic);
-        System.out.println("Earning - " + earn);
+    Manager(int x) {
+        this.basic = x;
     }
 
-    public void deductions(int basic) {
-        deduct = basic * 0.12;
-        System.out.println("Deduction - " + deduct);
+    public void earnings() {
+        double earn = basic + (0.80 * basic) + (0.15 * basic);
+        System.out.println("Earnings - " + earn);
     }
 
-    public void bonus(int basic) {
-        // Empty implementation (Manager does not handle bonuses)
+    public void deduction() { // Fixed spelling
+        double d = 0.12 * basic;
+        System.out.println("Deduction - " + d);
     }
-}
-
-class SubStaff extends Manager {
-    double gain;
-
     @Override
-    public void bonus(int basic) {
-        gain = basic * 0.5;
-        System.out.println("Bonus - " + gain);
+    public abstract void bonus();
+}
+class SubStaff extends Manager{
+    SubStaff(int x) {
+        super(x);
+    }
+
+    public void bonus(){
+double b = ((50*basic)/100);
+System.out.println("Bonus is "+b);
     }
 }
 
-public class Third {
-    public static void main(String args[]) {
-        Scanner in = new Scanner(System.in);
-        SubStaff obj = new SubStaff(); 
-        int z = in.nextInt();
-        obj.earnings(z);
-        obj.deductions(z);
-        obj.bonus(z);
-      
+public class Third{
+    public static void main(String args[]){
+Scanner in = new Scanner(System.in);
+int a = in.nextInt();
+SubStaff obj = new SubStaff(a);
+  obj.earnings();
+  obj.bonus();
+  obj.deduction();
     }
 }
