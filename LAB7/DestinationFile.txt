@@ -1,0 +1,5 @@
+Student Details
+Roll- 37
+Name- ishika
+Subject- java
+Mraks- 100
